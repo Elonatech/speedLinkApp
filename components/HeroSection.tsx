@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ImageBackground } from 'react-native';
 import { Video } from 'expo-av';
 import { FontAwesome } from '@expo/vector-icons';
 import { ResizeMode } from 'expo-av';
@@ -7,22 +7,28 @@ import { ResizeMode } from 'expo-av';
 const HeroSection = () => {
   return (
     <View style={styles.heroContainer}>
-      <Video
-        source={{ uri: 'https://res.cloudinary.com/dny7tqd0d/video/upload/v1720457608/Circuit-27725_xvfck7.mp4' }}
-        style={styles.backgroundVideo}
-        resizeMode={ResizeMode.COVER}
-        shouldPlay
-        isLooping
-        isMuted
-      />
-      <View style={styles.content}>
-        <Text style={styles.title}>We provide comprehensive IT solutions that makes businesses standout</Text>
-        <Text style={styles.subtitle}>We're a team of IT experts who help you transform and scale your organization</Text>
-        <TouchableOpacity style={styles.ctaButton}>
-          <FontAwesome name="arrow-right" size={24} color="white" style={styles.arrowIcon} />
-          <Text style={styles.buttonText}>IT SOLUTIONS AND SERVICES</Text>
-        </TouchableOpacity>
-      </View>
+      <ImageBackground
+        source={{ uri: 'https://speedlinkng.com/wp-content/uploads/2022/09/tech-background-1.jpg' }}
+        style={styles.imageBackground}
+      >
+        <Video
+          source={{ uri: 'https://res.cloudinary.com/dny7tqd0d/video/upload/v1720457608/Circuit-27725_xvfck7.mp4' }}
+          style={styles.backgroundVideo}
+          resizeMode={ResizeMode.COVER}
+          shouldPlay
+          isLooping
+          isMuted
+        />
+        <View style={styles.colorOverlay} />
+        <View style={styles.content}>
+          <Text style={styles.title}>We provide comprehensive IT solutions that makes businesses standout</Text>
+          <Text style={styles.subtitle}>We're a team of IT experts who help you transform and scale your organization</Text>
+          <TouchableOpacity style={styles.ctaButton}>
+            <FontAwesome name="arrow-right" size={24} color="white" style={styles.arrowIcon} />
+            <Text style={styles.buttonText}>IT SOLUTIONS AND SERVICES</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -34,7 +40,11 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: width,
     height: height * 0.8,
-    backgroundColor: 'rgba(2, 23, 109, 0.656)',
+  },
+  imageBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   backgroundVideo: {
     position: 'absolute',
@@ -42,6 +52,10 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
+  },
+  colorOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(2, 23, 109, 0.5)',
   },
   content: {
     position: 'absolute',

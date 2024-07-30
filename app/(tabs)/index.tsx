@@ -11,11 +11,13 @@ import TechnologyStack from '@/components/TechnologyStack';
 import TopClients from '@/components/TopClients';
 import Contact from '@/components/Contacts';
 import Footer from '@/components/Footer';
+import Services from '@/components/Services';
 
 const MemoizedTopBar = React.memo(TopBar);
 const MemoizedNavbar = React.memo(Navbar);
 const MemoizedHeroSection = React.memo(HeroSection);
 const MemoizedServiceSection = React.memo(ServiceSection);
+const MemoizedServices = React.memo(Services);
 const MemoizedIndustries = React.memo(Industries);
 const MemoizedProducts = React.memo(Products);
 const MemoizedCaseStudies = React.memo(CaseStudies);
@@ -28,6 +30,7 @@ const components = [
   { key: 'Navbar', component: <MemoizedNavbar /> },
   { key: 'HeroSection', component: <MemoizedHeroSection /> },
   { key: 'ServiceSection', component: <MemoizedServiceSection /> },
+  { key: 'Services', component: <MemoizedServices /> },
   { key: 'Industries', component: <MemoizedIndustries /> },
   { key: 'Products', component: <MemoizedProducts /> },
   { key: 'CaseStudies', component: <MemoizedCaseStudies /> },
@@ -46,15 +49,21 @@ const RenderItem: React.FC<RenderItemProps> = React.memo(({ item }) => (
 
 const Index: React.FC = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={components}
-        renderItem={({ item }) => <RenderItem item={item} />}
-        keyExtractor={(item) => item.key}
-        contentContainerStyle={styles.flatList}
-      />
+    <View style={styles.container}>
+      <MemoizedTopBar />
+      <View style={styles.navbarContainer}>
+        <MemoizedNavbar />
+      </View>
+      <SafeAreaView style={styles.safeArea}>
+        <FlatList
+          data={components.slice(2)}
+          renderItem={({ item }) => <RenderItem item={item} />}
+          keyExtractor={(item) => item.key}
+          contentContainerStyle={styles.flatList}
+        />
+      </SafeAreaView>
       <Footer />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -62,6 +71,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  navbarContainer: {
+    zIndex: 1000,
+  },
+  safeArea: {
+    flex: 1,
   },
   flatList: {
     flexGrow: 1,

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const products = [
   { name: 'DIGISCHOOL', icon: 'https://speedlinkng.com/wp-content/uploads/elementor/thumbs/lms-qlr0q7d82s1a0jmzxozozufvp8cxd3sbadz8bxwby8.jpg', description: 'Comprehensive solution for administration, documentation, tracking, reporting, and automation for primary and secondary schools.' },
@@ -15,7 +16,12 @@ const Products = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.products}>
+      <LinearGradient 
+        colors={['#FF0000', '#0000FF']} 
+        start={{x: 0, y: 0}} 
+        end={{x: 1, y: 1}} 
+        style={styles.products}
+      >
         <Text style={styles.h4}>Our Products</Text>
         <Text style={styles.h2}>Comprehensive IT SOLUTIONS that sets your business apart</Text>
         <Text style={styles.p}>Bringing Speed to your business</Text>
@@ -46,7 +52,7 @@ const Products = () => {
           <Text style={styles.viewProductsButtonText}>View all our products</Text>
           <Ionicons name="paper-plane" size={24} color="white" />
         </TouchableOpacity>
-      </View>
+      </LinearGradient>
     </ScrollView>
   );
 };
@@ -56,7 +62,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   products: {
-    backgroundColor: '#0808d5',
     padding: 20,
     alignItems: 'center',
   },

@@ -17,7 +17,7 @@ const ServiceSection = () => {
         </View>
         <Image 
           source={{uri: "https://speedlinkng.com/wp-content/uploads/2022/08/Speed-web-01-1024x682.jpg"}}
-          style={styles.imageContent}
+          style={styles.imageContent}  
         />
       </View>
       <View style={styles.serviceBox}>
